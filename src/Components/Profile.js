@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
     render() {
+        const { username, avatar_url } = this.props.currentUser.attributes
         return (
             <div>
-                <h1>This is a profile page</h1>
-                <h3>{this.props.currentUser.username}</h3>
-                <img src={`http://localhost:3000/${this.props.avatar}`} />
+                <h3>Profile Page for: </h3>
+                <h1>{username}</h1>
+                <img src={`http://localhost:3000/${avatar_url}`} alt={this.props.currentUser.username} />
             </div>
 
         )

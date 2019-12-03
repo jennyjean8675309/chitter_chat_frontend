@@ -9,7 +9,7 @@ const NavBar = (props) => {
                     <li><Link to='/' >Home</Link></li>
                     { props.currentUser ? (
                         <Fragment>
-                            <li>{props.currentUser.username}</li>
+                            <li>{props.currentUser.attributes.username}</li>
                             <li onClick={props.logout} >Logout</li>
                         </Fragment>
                     ) : (
@@ -18,6 +18,7 @@ const NavBar = (props) => {
                             <li><Link to='/create_account' >Create an Account</Link></li>
                         </Fragment>
                     )}
+                    <li><Link to='/rooms'>Rooms</Link></li>
                 </ul>
             </nav>
         </Fragment>

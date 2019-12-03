@@ -30,10 +30,9 @@ class Login extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             if (data.authenticated) {
                 localStorage.setItem('jwt_token', data.token)
-                this.props.updateCurrentUser(data)
+                this.props.updateCurrentUser(data.user.data)
             } else {
                 alert('Password/Username combination not found')
             }   

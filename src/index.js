@@ -4,10 +4,16 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import actionCable from 'actioncable';
+
+const CableApp = {}
+
+CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
+// This readys a consumer that will connect against /cable on your server by default (the client (your front-end) is connecting to the cable)
 
 ReactDOM.render(
     <Router>
-        <App />
+        <App cableApp={CableApp} />
     </Router>, 
     document.getElementById('root')
 );
