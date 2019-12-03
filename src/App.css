@@ -20,12 +20,74 @@ nav li a {
   color: white;
 }
 
+#home-page {
+  text-align: center;
+}
+
+#home-page h1 {
+  font-size: 100px;
+  font-family: cursive;
+  display: inline-block;
+}
+
+#room-show {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "room-header room-header room-header"
+    "chat-feed chat-feed room-sidebar"
+    "chat-feed chat-feed room-sidebar"
+    "chat-form chat-form room-sidebar";
+}
+
+#chat-feed {
+  grid-area: chat-feed;
+  width: 75%;
+  margin: auto;
+}
+
+#chat-form {
+  grid-area: chat-form;
+  width: 75%;
+  margin: auto;
+}
+
+#chat-form textarea {
+  width: 100%;
+  height: 25%;
+}
+
+#room-header {
+  grid-area: room-header;
+  margin: auto;
+  padding: 2.5%;
+}
+
+#room-sidebar {
+  grid-area: room-sidebar;
+}
+
+#users-list {
+  list-style: none;
+}
+
+#users-list li {
+  padding: 10px;
+}
+
+#messages {
+  height: 350px;
+  overflow-y: scroll;
+  background-color: lightgray;
+}
+
 #chat-message {
-  background-color: white;
-  margin: 10px;
+  margin-top: 2.5%;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 3px 3px black;
+  width: 45%;
 }
 
 #chat-message h4 {
@@ -44,9 +106,12 @@ nav li a {
 
 .current-user-message {
   background-color: lightskyblue;
+  margin-right: 2.5%;
+  margin-left: 45%;
 }
 
 .other-user-message {
   background-color: lightgreen;
+  margin-left: 2.5%;
 }
 

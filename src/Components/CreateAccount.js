@@ -76,6 +76,7 @@ class CreateAccount extends Component {
         console.log(this.props)
         return (
               <div>
+                <h3>Create an Account</h3>
                 <form>
                     <input type='text' name='username' value={this.state.username} onChange={(e) => this.handleChange(e)} placeholder='username' />
                     <input type='password' name='password' onChange={(e) => this.handleChange(e)} placeholder='password' />

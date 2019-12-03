@@ -54,16 +54,14 @@ class App extends Component {
   }
 
   logout = () => {
-    console.log('logging out...')
     localStorage.removeItem('jwt_token')
     this.setState({
-      currentUser: null,
-      avatar: ''
+      currentUser: null
     })
+    return <Redirect to='/home' />
   }
 
   updateAppStateRoom = (newRoom) => {
-    console.log('new room...', newRoom.room)
     this.setState({
       currentRoom: {
         room: newRoom.room.data,
@@ -87,8 +85,30 @@ class App extends Component {
     })
   }
 
-  subscribeToRoom = () => {
-    //this function will be called when a user clicks on the 'subscribe' button from the rooms page
+  subscribeToRoom = (event) => {
+    const room_id = event.target.id
+    {this.state.currentUser ? (this.postFirstMessage(room_id)) : (alert('You must be logged in to subscribe to a room.'))}
+  }
+
+  postFirstMessage = (roomId) => {
+    window.history.pushState(null, null, `/rooms/${roomId}`)
+    const message = {
+      content: `${this.state.currentUser.attributes.username} has joined this room!`,
+      user_id: this.state.currentUser.id,
+      room_id: roomId
+    }
+    fetch("http://localhost:3000/messages", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({message: message})
+    })
+    .then(resp => resp.json())
+    .then(result => {
+        console.log(result)
+    })
   }
 
   render() {
@@ -113,6 +133,7 @@ class App extends Component {
               allRooms={this.state.allRooms}
               currentUser={this.state.currentUser}
               getRoomData={this.getRoomData}
+              handleSubscribe={this.subscribeToRoom}
             />
           )} />
           <Route exact path='/rooms/:id' render={ (props) => (

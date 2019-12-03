@@ -9,7 +9,7 @@ import actionCable from 'actioncable';
 const CableApp = {}
 
 CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
-// This readys a consumer that will connect against /cable on your server by default (the client (your front-end) is connecting to the cable)
+// This readys a consumer that will connect against /cable on your backend server by default (the client (your front-end) is connecting to the cable - through a route you have defined on the back end)
 
 ReactDOM.render(
     <Router>
