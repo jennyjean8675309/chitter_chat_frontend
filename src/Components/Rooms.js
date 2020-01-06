@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 class Rooms extends Component {
     displayRooms = (rooms) => {
-        // if a user clicks on the subscribe button, I can send them an alert that welcomes them to the room and prompts them to post a message to make their subscription 'official'
         let usersRooms = null
         if (this.props.currentUser) {
             usersRooms = this.props.currentUser.attributes.rooms

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class ChatMessage extends Component {
     whichUser = () => {
-        if (this.props.message.user_id == this.props.currentUser.id) {
+        if (this.props.message.user_id === parseInt(this.props.currentUser.id)) {
             return 'current-user-message'
         } else {
             return 'other-user-message'

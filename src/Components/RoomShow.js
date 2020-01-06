@@ -12,7 +12,7 @@ class RoomShow extends Component {
 
     displayUsers = (users) => {
         return users.map( user => {
-            return <li key={user.id}><img src={`http://localhost:3000/${user.attributes.avatar_url}`}/>{user.attributes.username}</li>
+            return <li key={user.id}><img src={`http://localhost:3000/${user.attributes.avatar_url}`} alt={`avatar for ${user.attributes.username}`}/>{user.attributes.username}</li>
         })
     }
 
@@ -24,6 +24,10 @@ class RoomShow extends Component {
 
     submitMessage = (event) => {
         event.preventDefault()
+
+        this.setState({
+            newMessage: ''
+        })
 
         const message = {
             content: this.state.newMessage,
@@ -41,7 +45,8 @@ class RoomShow extends Component {
         })
         .then(resp => resp.json())
         .then(result => {
-            console.log(result)
+            let messageDiv = document.getElementById('messages')
+            messageDiv.scrollTop = messageDiv.scrollHeight
         })
     }
 
@@ -68,10 +73,10 @@ class RoomShow extends Component {
                 ) : null }
                 
                 <RoomWebSocket
-                    data-cableApp={this.props['data-cableApp']}
-                    data-updateApp={this.props['data-updateApp']}
-                    data-roomData={this.props['data-roomData']}
+                    cableApp={this.props.cableApp}
+                    updateApp={this.props.updateApp}
                     getRoomData={this.props.getRoomData}
+                    roomData={this.props.roomData}
                 />
             </div>
         )

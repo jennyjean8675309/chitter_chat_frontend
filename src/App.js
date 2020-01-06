@@ -24,7 +24,6 @@ class App extends Component {
     }
   }
 
-  // refactored with new data from API changes
   componentDidMount() {
     let token = localStorage.getItem('jwt_token')
     if (token) {
@@ -136,16 +135,20 @@ class App extends Component {
               handleSubscribe={this.subscribeToRoom}
             />
           )} />
-          <Route exact path='/rooms/:id' render={ (props) => (
-            <RoomShow
+          <Route exact path='/rooms/:id' render={ (props) => {
+            return this.state.currentUser ?
+            (<RoomShow
               {...props}
-              data-cableApp={this.props.cableApp}
-              data-updateApp={this.updateAppStateRoom}
+              cableApp={this.props.cableApp}
+              updateApp={this.updateAppStateRoom}
               getRoomData={this.getRoomData}
               roomData={this.state.currentRoom}
               currentUser={this.state.currentUser}
             />
-          )} />
+            ) : (
+              <Redirect to='/rooms' />
+            )
+            }} />
           <Route component={NotFound} />
         </Switch>
       </Fragment>

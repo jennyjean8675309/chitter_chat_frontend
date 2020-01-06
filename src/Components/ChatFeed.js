@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import ChatMessage from './ChatMessage';
 
 class ChatFeed extends Component {
+    componentDidUpdate() {
+        let messageDiv = document.getElementById('messages')
+        messageDiv.scrollToTop = messageDiv.scrollHeight
+    }
+
     displayMessages = (messages) => {
         return messages.map(message => {
             const avatar = this.whichAvatar(message)
