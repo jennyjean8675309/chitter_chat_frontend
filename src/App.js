@@ -86,7 +86,7 @@ class App extends Component {
 
   subscribeToRoom = (event) => {
     const room_id = event.target.id
-    {this.state.currentUser ? (this.postFirstMessage(room_id)) : (alert('You must be logged in to subscribe to a room.'))}
+    this.state.currentUser ? (this.postFirstMessage(room_id)) : (alert('You must be logged in to subscribe to a room.'))
   }
 
   postFirstMessage = (roomId) => {
@@ -131,7 +131,6 @@ class App extends Component {
             <Rooms 
               allRooms={this.state.allRooms}
               currentUser={this.state.currentUser}
-              getRoomData={this.getRoomData}
               handleSubscribe={this.subscribeToRoom}
             />
           )} />
@@ -140,8 +139,8 @@ class App extends Component {
             (<RoomShow
               {...props}
               cableApp={this.props.cableApp}
-              updateApp={this.updateAppStateRoom}
               getRoomData={this.getRoomData}
+              updateApp={this.updateAppStateRoom}
               roomData={this.state.currentRoom}
               currentUser={this.state.currentUser}
             />
